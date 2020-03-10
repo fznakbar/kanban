@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,11 +8,93 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Kanban</title>
 </head>
-<body>
-    <div style="text-align: center; font-size: 325px;" id="hello-world">
 
+<body style="background-image: url(https://image.freepik.com/free-photo/white-brick-wall_23-2148457083.jpg);">
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#" style="font-family: courier;">KANGBAN</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="#">Add Plan</a>
+            </div>
+        </div>
+            <button class="btn btn-primary">Logout</button>
+    </nav>
+
+    <div class="container mt-5">
+        <div class="d-flex flex-row">
+            <div class="card col-3 mr-3 pb-3" style="text-align: center; background-color: #ad9c9a;">
+                <h4>Planned</h4>
+                <hr>
+                <div class="card mb-2">
+                    <div class="card-body mb-1">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quickand make up the bulk of the card's content.</p>
+                        <div>
+                            <a href="#" class="btn btn-warning">Decline</a>
+                            <a href="#" class="btn btn-info">Proccess</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on thke up the bulk of the card's content.</p>
+                        <div>
+                            <a href="#" class="btn btn-warning">Decline</a>
+                            <a href="#" class="btn btn-info">Proccess</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card col-3 bg-warning mr-3 pb-3" style="text-align: center; height: 100%;">
+                <h4>Declined</h4>
+                <hr>
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <div>
+                            <a href="#" class="btn btn-secondary">Plan Again</a>
+                            <a href="#" class="btn btn-primary">Edit</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card col-3 bg-success mr-3 pb-3" style="text-align: center; height: 100%;">
+                <h4>On-progress</h4>
+                <hr>
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <div>
+                            <a href="#" class="btn btn-success">Done</a>
+                        </div>
+                    </div>
+                </div>
+                <h6>Add Proccess</h6>
+            </div>
+            <div class="card col-3 bg-secondary pb-3" style="text-align: center; height: 100%;">
+                <h4>Finished</h4>
+                <hr>
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <h5 class="card-title">Card title</h5>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        <div>
+                            <a href="#" class="btn btn-danger">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="./index.js"></script>
+    <!-- <script src="./index.js"></script> -->
 </body>
+
 </html>
