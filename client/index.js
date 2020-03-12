@@ -45,9 +45,10 @@ var app = new Vue({
                 .then(response => {
                     localStorage.setItem('token', response.data)
                     this.isLogin = localStorage.getItem('token')
+                    this.showData()
                 })
                 .catch(err => {
-                    this.isError = err.response.data
+                    this.isError = err.response.data.msg
                 })
         },
         registerForm() {
@@ -68,7 +69,7 @@ var app = new Vue({
                         this.isLogin = localStorage.getItem('token')
                     })
                     .catch(err => {
-                        this.isError = err.response.data
+                        this.isError = err.response.data.msg
                     })
             }
         },

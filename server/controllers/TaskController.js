@@ -4,7 +4,7 @@ const Task = Model.Task
 class TaskController {
     static findAll(req, res, next){
         let id = req.userData.id
-        Task.findAll({where : {UserId : id}})
+        Task.findAll({where : {UserId : id}, order : [['id', 'ASC']]})
         .then(data =>{
             res.status(200).json(data)
         })

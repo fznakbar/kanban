@@ -28,19 +28,26 @@ class UserController {
         let dataId = null
         User.findOne({ where: { email: email } })
             .then(data => {
-                dataEmail = data.email
-                dataId = data.id
-                return bcrypt.compare(password, data.password)
+                if(data){
+                    dataEmail = data.email
+                    dataId = data.id
+                    return bcrypt.compare(password, data.password)
+                } else {
+                    throw {
+                        src: "login",
+                        status: 404
+                    }               
+                }
             })
             .then(function(result) {
                 if (result) {
                     let token = jwt.sign({ id: dataId, email: dataEmail }, process.env.SECRET)
                     res.status(200).json(token)
                 } else {
-                    next({
+                    throw {
                         src: "login",
                         status: 404
-                    })
+                    }
                 }
             })
             .catch(err => {
