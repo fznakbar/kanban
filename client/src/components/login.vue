@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="mt-5" style="text-align: center; font-family: monospace;">
-      <h1>Welcome, to Kangban !</h1>
+      <h1>Welcome, to Kanban !</h1>
     </div>
     <div class="container">
       <div class="d-flex row justify-content-center mt-5">
@@ -22,7 +22,8 @@
             </div>
             <button type="submit" class="btn btn-primary mb-3">Login</button>
             <br />
-            <!-- <div class="g-signin2" data-onsuccess="onSignIn"></div> -->
+            <a style="color: yellow" href="#" v-on:click="onsuccess">Google Sign In</a>
+            <br>
             <a href style="color:blue" v-on:click.prevent="changeRegister">Don't have an account? Register</a>
           </form>
         </div>
@@ -64,6 +65,33 @@ export default {
     },
     changeRegister() {
       this.$emit("changePage", "registerPage");
+    },
+    onsuccess(){
+      this.$gAuth.signIn()
+        .then(GoogleUser => {
+          let token = GoogleUser.getAuthResponse().id_token
+          this.loginGoogle(token)
+        })
+        .catch(error  => {
+          console.log(error)
+        })
+    },
+    loginGoogle(token){
+      axios({
+        method: "post",
+        url: `${url}/users/googlesignin`,
+        data: {
+          token : token
+        }
+      })
+        .then(response => {
+          localStorage.setItem("token", response.data);
+          this.$emit("changePage", "mainPage");
+          this.$emit('refresh');
+        })
+        .catch(err => {
+          this.isError = err.response.data.msg;
+        });
     }
   },
     watch : {

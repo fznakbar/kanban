@@ -6,9 +6,10 @@
                 <hr>
                 <h5 class="card-title">{{tasks.description}}</h5>
                     <div>
-                    <a v-if="tasks.category !== 'Backlog'" href="#" class="btn btn-dark" v-on:click.prevent="switchLeft(tasks.id, tasks.category)">Cancel</a>
-                    <a v-if="tasks.category !== 'Completed'" href="#" class="btn btn-success" v-on:click.prevent="switchRight(tasks.id, tasks.category)">Next</a>
-                    <a v-if="tasks.category === 'Completed'" href="#" class="btn btn-danger" v-on:click.prevent="deleteTask(tasks.id)">Delete</a>
+                    <a v-if="tasks.category !== 'Backlog'" href="#" class="btn btn-dark" style="padding: 5px 5px;" v-on:click.prevent="switchLeft(tasks.id, tasks.category)">Cancel</a>
+                    <a v-if="tasks.category !== 'Completed'" href="#" style="padding: 5px 5px;" class="btn btn-success" v-on:click.prevent="switchRight(tasks.id, tasks.category)">Next</a>
+                    <a href="#" class="btn btn-info" style="padding: 5px 5px;" v-on:click.prevent="editTask(tasks.id)">Edit</a>
+                    <a v-if="tasks.category === 'Completed'" href="#" style="padding: 5px 5px;" class="btn btn-danger" v-on:click.prevent="deleteTask(tasks.id)">Delete</a>
                     </div>
             </div>
         </div>
@@ -93,6 +94,22 @@ export default {
             .then(response =>{
                 this.$emit('refresh');
 
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        },
+        editTask(id){
+            axios({
+                method : 'get',
+                url : `${url}/tasks/${id}`,
+                headers: {
+                    access_token: localStorage.getItem('token')
+                },
+            })
+            .then(response =>{
+                this.$emit("changePage", "editPage")
+                this.$emit('dataTask', response.data)
             })
             .catch(err => {
                 console.log(err)

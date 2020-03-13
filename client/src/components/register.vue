@@ -75,7 +75,7 @@ export default {
             } else {
                 axios({
                     method: 'post',
-                    url: `${url}/register`,
+                    url: `${url}/users/register`,
                     data: {
                         email: this.email_register,
                         name: this.name_register,
@@ -84,7 +84,6 @@ export default {
                     })
                     .then(response => {
                         localStorage.setItem('token', response.data)
-                        // this.isLogin = localStorage.getItem('token')
                         this.$emit("changePage", "mainPage");
                         this.$emit('refresh');
                     })

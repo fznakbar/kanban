@@ -1,7 +1,7 @@
 <template>
     <div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-dark" style="opacity : 80%">
-        <a class="navbar-brand" href="#" style="font-family: courier;">KANGBAN</a>
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark" style="opacity : 94%">
+        <a class="navbar-brand" href="#" style="font-family: courier; color:white">KANBAN</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -19,6 +19,7 @@
     </div>
 </template>
 <script>
+
 import axios from 'axios'
 export default {
     data () {
@@ -28,7 +29,13 @@ export default {
     },
     methods : {
         logout(){
+          this.$gAuth.signOut()
+          .then(() => {
             this.$emit('logout')
+          })
+          .catch(error  => {
+            console.log(err)
+          })
         }
     }
 }

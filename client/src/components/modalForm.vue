@@ -1,6 +1,6 @@
 <template>
     <div>
-        <b-button v-b-modal.modal-prevent-closing>Add Back-log</b-button>
+        <b-button v-b-modal.modal-prevent-closing>Add Backlog</b-button>
 
         <b-modal
         id="modal-prevent-closing"
@@ -36,6 +36,7 @@
                 :state="nameState"
                 required
             ></b-form-input>
+    <!--  -->
 
             </b-form-group>
         </form>

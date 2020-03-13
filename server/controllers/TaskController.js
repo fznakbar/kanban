@@ -44,7 +44,8 @@ class TaskController {
         let id = req.params.id
         let obj = {
             title : req.body.title,
-            category : req.body.category,
+            description : req.body.description,
+            category : req.body.category
         }
         Task.update(obj, {where : {id:id}})
         .then(data=>{
