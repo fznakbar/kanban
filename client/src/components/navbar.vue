@@ -1,6 +1,6 @@
 <template>
     <div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark" style="opacity : 80%">
         <a class="navbar-brand" href="#" style="font-family: courier;">KANGBAN</a>
         <button
           class="navbar-toggler"

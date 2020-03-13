@@ -57,6 +57,7 @@
 </template>
 <script>
 import axios from 'axios'
+let url = `http://localhost:3000`
 export default {
     data() {
         return {
@@ -74,7 +75,7 @@ export default {
             } else {
                 axios({
                     method: 'post',
-                    url: `http://localhost:3000/users/register`,
+                    url: `${url}/register`,
                     data: {
                         email: this.email_register,
                         name: this.name_register,

@@ -13,9 +13,21 @@ class TaskController {
         })
     }
 
+    static findOne(req, res, next){
+        let id = req.params.id
+        Task.findOne({where : {id : id}})
+        .then(data =>{
+            res.status(200).json(data)
+        })
+        .catch(err=>{
+            next(err)
+        })
+    }
+
     static addTask(req, res, next){
         let obj = {
             title : req.body.title,
+            description : req.body.description,
             category : req.body.category,
             UserId : req.userData.id
         }

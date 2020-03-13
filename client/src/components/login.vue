@@ -32,6 +32,7 @@
 </template>
 <script>
 import axios from 'axios'
+let url = `http://localhost:3000`
 export default {
   data() {
     return {
@@ -46,7 +47,7 @@ export default {
     login() {
       axios({
         method: "post",
-        url: `http://localhost:3000/users/login`,
+        url: `${url}/users/login`,
         data: {
           email: this.email_login,
           password: this.password_login
