@@ -1,4 +1,3 @@
-requi
 import Vue from 'vue'
 import App from './app.vue'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'

@@ -28,15 +28,9 @@ export default {
         }
     },
     methods : {
-        logout(){
-          this.$gAuth.signOut()
-          .then(() => {
-            this.$emit('logout')
-          })
-          .catch(error  => {
-            console.log(err)
-          })
-        }
+      logout(){
+      this.$emit('logout')
+      }
     }
 }
 </script>

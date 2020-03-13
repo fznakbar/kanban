@@ -10692,7 +10692,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var url = "http://localhost:3000";
+var url = "https://hidden-shore-97996.herokuapp.com";
 var _default = {
   data: function data() {
     return {
@@ -11046,7 +11046,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var url = "http://localhost:3000";
+var url = "https://hidden-shore-97996.herokuapp.com";
 var _default = {
   data: function data() {
     return {
@@ -11393,13 +11393,7 @@ var _default = {
   },
   methods: {
     logout: function logout() {
-      var _this = this;
-
-      this.$gAuth.signOut().then(function () {
-        _this.$emit('logout');
-      }).catch(function (error) {
-        console.log(err);
-      });
+      this.$emit('logout');
     }
   }
 };
@@ -11566,7 +11560,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var url = "http://localhost:3000";
+var url = "https://hidden-shore-97996.herokuapp.com";
 var _default = {
   data: function data() {
     return {
@@ -11802,7 +11796,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var url = "http://localhost:3000";
+var url = "https://hidden-shore-97996.herokuapp.com";
 var _default = {
   props: ["tasks", "status"],
   data: function data() {
@@ -11839,7 +11833,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'put',
-        url: "http://localhost:3000/tasks/edit/".concat(id),
+        url: "".concat(url, "/tasks/edit/").concat(id),
         headers: {
           access_token: localStorage.getItem('token')
         },
@@ -11867,7 +11861,7 @@ var _default = {
 
       (0, _axios.default)({
         method: 'put',
-        url: "http://localhost:3000/tasks/edit/".concat(id),
+        url: "".concat(url, "/tasks/edit/").concat(id),
         headers: {
           access_token: localStorage.getItem('token')
         },
@@ -12061,7 +12055,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var url = "http://localhost:3000";
+var url = "https://hidden-shore-97996.herokuapp.com";
 var _default = {
   props: ["dataEdit"],
   data: function data() {
@@ -12298,7 +12292,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var url = "http://localhost:3000";
+var url = "https://hidden-shore-97996.herokuapp.com";
 var _default = {
   components: {
     login: _login.default,
@@ -56842,7 +56836,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60736" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56613" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

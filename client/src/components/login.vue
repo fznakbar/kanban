@@ -22,7 +22,7 @@
             </div>
             <button type="submit" class="btn btn-primary mb-3">Login</button>
             <br />
-            <a style="color: yellow" href="#" v-on:click="onsuccess">Google Sign In</a>
+            <a href="#" style="color: yellow" v-on:click="onsuccess">Google Sign In</a>
             <br>
             <a href style="color:blue" v-on:click.prevent="changeRegister">Don't have an account? Register</a>
           </form>
@@ -33,7 +33,7 @@
 </template>
 <script>
 import axios from 'axios'
-let url = `http://localhost:3000`
+let url = `https://hidden-shore-97996.herokuapp.com`
 export default {
   data() {
     return {

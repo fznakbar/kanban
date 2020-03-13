@@ -17,7 +17,7 @@
 </template>
 
 <script>
-let url = `http://localhost:3000`
+let url = `https://hidden-shore-97996.herokuapp.com`
 import axios from 'axios'
 export default {
     props : [
@@ -56,7 +56,7 @@ export default {
             }
             axios({
                 method : 'put',
-                url : `http://localhost:3000/tasks/edit/${id}`,
+                url : `${url}/tasks/edit/${id}`,
                 headers: {
                     access_token: localStorage.getItem('token')
                 },
@@ -83,7 +83,7 @@ export default {
             }
             axios({
                 method : 'put',
-                url : `http://localhost:3000/tasks/edit/${id}`,
+                url : `${url}/tasks/edit/${id}`,
                 headers: {
                     access_token: localStorage.getItem('token')
                 },

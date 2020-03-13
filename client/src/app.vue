@@ -56,7 +56,7 @@
 </template>
 
 <script>
-let url = `http://localhost:3000`
+let url = `https://hidden-shore-97996.herokuapp.com`
 import axios from 'axios'
 import login from './components/login'
 import register from './components/register'

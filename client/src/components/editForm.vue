@@ -11,7 +11,7 @@
     </div>
 </template>
 <script>
-let url = `http://localhost:3000`
+let url = `https://hidden-shore-97996.herokuapp.com`
 import axios from 'axios'
 export default {
     props : [
