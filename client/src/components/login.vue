@@ -33,8 +33,8 @@
 </template>
 <script>
 import axios from 'axios'
-// let url = `https://hidden-shore-97996.herokuapp.com`
-let url = `http://localhost:3000`
+let url = `https://hidden-shore-97996.herokuapp.com`
+// let url = `http://localhost:3000`
 export default {
   data() {
     return {
