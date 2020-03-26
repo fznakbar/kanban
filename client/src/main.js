@@ -12,6 +12,7 @@ const gauthOption = {
 Vue.use(GAuth, gauthOption)
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
+
 new Vue({
     render : h => h(App)
 }).$mount('#app')

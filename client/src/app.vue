@@ -26,7 +26,8 @@
           <!-- BOARD SECTION -->
           <div class="d-flex flex-row">
             <div v-for="category in categories" :key="category.index" :class="category.class" style="text-align: center; height: 100%; opacity:93%">
-              <div class="mt-2">
+             <category :tasks="tasks" :category="category" @refresh="refresh" @changePage="changePage" @dataTask="dataEdit"></category>
+              <!-- <div class="mt-2">
                 <h4>{{category.name}}</h4>
               </div>
               <hr style="margin-top: 0px;">
@@ -34,7 +35,7 @@
                 <div v-for="task in tasks" :key="task.index">
                     <card :status="category.name" :tasks="task" @refresh="refresh" @changePage="changePage" @dataTask="dataEdit"></card>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
           <!-- END OF THE BOARD SECTION -->
@@ -56,17 +57,18 @@
 </template>
 
 <script>
-let url = `https://hidden-shore-97996.herokuapp.com`
+// let url = `https://hidden-shore-97996.herokuapp.com`
+let url = `http://localhost:3000`
 import axios from 'axios'
 import login from './components/login'
 import register from './components/register'
 import navbar from './components/navbar'
 import modalForm from './components/modalForm'
-import card from './components/card'
+import category from './components/category.vue'
 import editForm from './components/editForm.vue'
 export default {
     components : {
-        login,register,navbar,modalForm,card,editForm
+        login,register,navbar,modalForm,editForm,category
     },
     data() {
        return { 
@@ -124,16 +126,11 @@ export default {
                     }
                 })
                 .then(response => {
-                    this.readData(response.data)
+                    this.tasks = response.data
                 })
                 .catch(err => {
                     console.log(err)
                 })
-        },
-        readData(data) {
-            for (let i = 0; i < data.length; i++) {
-                this.tasks.push(data[i])
-            }
         },
         refresh(){
             this.tasks = []

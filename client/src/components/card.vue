@@ -17,12 +17,16 @@
 </template>
 
 <script>
-let url = `https://hidden-shore-97996.herokuapp.com`
+// let url = `https://hidden-shore-97996.herokuapp.com`
+let url = `http://localhost:3000`
 import axios from 'axios'
 export default {
     props : [
         "tasks", "status"
     ],
+    watch : {
+
+    },
     data() {
         return {
            
@@ -65,7 +69,8 @@ export default {
                 }
             })
             .then(response =>{
-                this.$emit('refresh');
+                // console.log('masuk')
+                this.$emit('refresh')
 
             })
             .catch(err => {
@@ -92,7 +97,7 @@ export default {
                 }
             })
             .then(response =>{
-                this.$emit('refresh');
+                this.$emit('refresh')
 
             })
             .catch(err => {
@@ -108,7 +113,7 @@ export default {
                 },
             })
             .then(response =>{
-                this.$emit("changePage", "editPage")
+                this.$emit('gantiHalaman', 'editPage')
                 this.$emit('dataTask', response.data)
             })
             .catch(err => {

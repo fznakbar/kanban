@@ -10692,7 +10692,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var url = "https://hidden-shore-97996.herokuapp.com";
+// let url = `https://hidden-shore-97996.herokuapp.com`
+var url = "http://localhost:3000";
 var _default = {
   data: function data() {
     return {
@@ -11046,7 +11047,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var url = "https://hidden-shore-97996.herokuapp.com";
+// let url = `https://hidden-shore-97996.herokuapp.com`
+var url = "http://localhost:3000";
 var _default = {
   data: function data() {
     return {
@@ -11560,7 +11562,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var url = "https://hidden-shore-97996.herokuapp.com";
+// let url = `https://hidden-shore-97996.herokuapp.com`
+var url = "http://localhost:3000";
 var _default = {
   data: function data() {
     return {
@@ -11796,9 +11799,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var url = "https://hidden-shore-97996.herokuapp.com";
+// let url = `https://hidden-shore-97996.herokuapp.com`
+var url = "http://localhost:3000";
 var _default = {
   props: ["tasks", "status"],
+  watch: {},
   data: function data() {
     return {};
   },
@@ -11841,6 +11846,7 @@ var _default = {
           category: tmp
         }
       }).then(function (response) {
+        // console.log('masuk')
         _this2.$emit('refresh');
       }).catch(function (err) {
         console.log(err);
@@ -11884,7 +11890,7 @@ var _default = {
           access_token: localStorage.getItem('token')
         }
       }).then(function (response) {
-        _this4.$emit("changePage", "editPage");
+        _this4.$emit('gantiHalaman', 'editPage');
 
         _this4.$emit('dataTask', response.data);
       }).catch(function (err) {
@@ -12031,7 +12037,151 @@ render._withStripped = true
         
       }
     })();
-},{"axios":"node_modules/axios/index.js","_css_loader":"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/editForm.vue":[function(require,module,exports) {
+},{"axios":"node_modules/axios/index.js","_css_loader":"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/category.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _card = _interopRequireDefault(require("../components/card"));
+
+var _axios = _interopRequireDefault(require("axios"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var url = 'http://localhost:3000';
+var _default = {
+  components: {
+    card: _card.default
+  },
+  props: ["category", "tasks"],
+  created: function created() {},
+  data: function data() {
+    return {
+      dataEditForm: null,
+      page: 'mainPage'
+    };
+  },
+  methods: {
+    changePages: function changePages(page) {
+      this.$emit("changePage", page);
+    },
+    dataEdit: function dataEdit(payload) {
+      this.$emit('dataTask', payload);
+    },
+    changePage: function changePage(page) {
+      this.page = page;
+    },
+    showData: function showData() {
+      var _this = this;
+
+      (0, _axios.default)({
+        method: 'get',
+        url: "".concat(url, "/tasks"),
+        headers: {
+          access_token: localStorage.getItem('token')
+        }
+      }).then(function (response) {
+        _this.tasks = response.data;
+      }).catch(function (err) {
+        console.log(err);
+      });
+    },
+    refresh: function refresh() {
+      this.$emit('refresh');
+    }
+  }
+};
+exports.default = _default;
+        var $aabac3 = exports.default || module.exports;
+      
+      if (typeof $aabac3 === 'function') {
+        $aabac3 = $aabac3.options;
+      }
+    
+        /* template */
+        Object.assign($aabac3, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "mt-2" }, [
+      _c("h4", [_vm._v(_vm._s(_vm.category.name))])
+    ]),
+    _vm._v(" "),
+    _c("hr", { staticStyle: { "margin-top": "0px" } }),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "overflow-auto", staticStyle: { "max-height": "70vh" } },
+      _vm._l(_vm.tasks, function(task) {
+        return _c(
+          "div",
+          { key: task.index },
+          [
+            _c("card", {
+              attrs: { status: _vm.category.name, tasks: task },
+              on: {
+                refresh: _vm.refresh,
+                gantiHalaman: _vm.changePages,
+                dataTask: _vm.dataEdit
+              }
+            })
+          ],
+          1
+        )
+      }),
+      0
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$aabac3', $aabac3);
+          } else {
+            api.reload('$aabac3', $aabac3);
+          }
+        }
+
+        
+      }
+    })();
+},{"../components/card":"src/components/card.vue","axios":"node_modules/axios/index.js","_css_loader":"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"src/components/editForm.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -12055,7 +12205,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var url = "https://hidden-shore-97996.herokuapp.com";
+// let url = `https://hidden-shore-97996.herokuapp.com`
+var url = 'http://localhost:3000';
 var _default = {
   props: ["dataEdit"],
   data: function data() {
@@ -12229,7 +12380,7 @@ var _navbar = _interopRequireDefault(require("./components/navbar"));
 
 var _modalForm = _interopRequireDefault(require("./components/modalForm"));
 
-var _card = _interopRequireDefault(require("./components/card"));
+var _category = _interopRequireDefault(require("./components/category.vue"));
 
 var _editForm = _interopRequireDefault(require("./components/editForm.vue"));
 
@@ -12292,15 +12443,17 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 //
 //
 //
-var url = "https://hidden-shore-97996.herokuapp.com";
+//
+// let url = `https://hidden-shore-97996.herokuapp.com`
+var url = "http://localhost:3000";
 var _default = {
   components: {
     login: _login.default,
     register: _register.default,
     navbar: _navbar.default,
     modalForm: _modalForm.default,
-    card: _card.default,
-    editForm: _editForm.default
+    editForm: _editForm.default,
+    category: _category.default
   },
   data: function data() {
     return {
@@ -12355,15 +12508,10 @@ var _default = {
           access_token: localStorage.getItem('token')
         }
       }).then(function (response) {
-        _this.readData(response.data);
+        _this.tasks = response.data;
       }).catch(function (err) {
         console.log(err);
       });
-    },
-    readData: function readData(data) {
-      for (var i = 0; i < data.length; i++) {
-        this.tasks.push(data[i]);
-      }
     },
     refresh: function refresh() {
       this.tasks = [];
@@ -12440,38 +12588,16 @@ exports.default = _default;
                     }
                   },
                   [
-                    _c("div", { staticClass: "mt-2" }, [
-                      _c("h4", [_vm._v(_vm._s(category.name))])
-                    ]),
-                    _vm._v(" "),
-                    _c("hr", { staticStyle: { "margin-top": "0px" } }),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "overflow-auto",
-                        staticStyle: { "max-height": "70vh" }
-                      },
-                      _vm._l(_vm.tasks, function(task) {
-                        return _c(
-                          "div",
-                          { key: task.index },
-                          [
-                            _c("card", {
-                              attrs: { status: category.name, tasks: task },
-                              on: {
-                                refresh: _vm.refresh,
-                                changePage: _vm.changePage,
-                                dataTask: _vm.dataEdit
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      }),
-                      0
-                    )
-                  ]
+                    _c("category", {
+                      attrs: { tasks: _vm.tasks, category: category },
+                      on: {
+                        refresh: _vm.refresh,
+                        changePage: _vm.changePage,
+                        dataTask: _vm.dataEdit
+                      }
+                    })
+                  ],
+                  1
                 )
               }),
               0
@@ -12528,7 +12654,7 @@ render._withStripped = true
         
       }
     })();
-},{"axios":"node_modules/axios/index.js","./components/login":"src/components/login.vue","./components/register":"src/components/register.vue","./components/navbar":"src/components/navbar.vue","./components/modalForm":"src/components/modalForm.vue","./components/card":"src/components/card.vue","./components/editForm.vue":"src/components/editForm.vue","_css_loader":"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"node_modules/bootstrap-vue/esm/utils/vue.js":[function(require,module,exports) {
+},{"axios":"node_modules/axios/index.js","./components/login":"src/components/login.vue","./components/register":"src/components/register.vue","./components/navbar":"src/components/navbar.vue","./components/modalForm":"src/components/modalForm.vue","./components/category.vue":"src/components/category.vue","./components/editForm.vue":"src/components/editForm.vue","_css_loader":"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js","vue-hot-reload-api":"node_modules/vue-hot-reload-api/dist/index.js","vue":"node_modules/vue/dist/vue.runtime.esm.js"}],"node_modules/bootstrap-vue/esm/utils/vue.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -56613,168 +56739,7 @@ module.hot.accept(reloadCSS);
         module.hot.dispose(reloadCSS);
         module.hot.accept(reloadCSS);
       
-},{"_css_loader":"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"node_modules/vue-google-oauth2/index.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var googleAuth = function () {
-  function installClient() {
-    var apiUrl = 'https://apis.google.com/js/api.js';
-    return new Promise(resolve => {
-      var script = document.createElement('script');
-      script.src = apiUrl;
-
-      script.onreadystatechange = script.onload = function () {
-        if (!script.readyState || /loaded|complete/.test(script.readyState)) {
-          setTimeout(function () {
-            resolve();
-          }, 500);
-        }
-      };
-
-      document.getElementsByTagName('head')[0].appendChild(script);
-    });
-  }
-
-  function initClient(config) {
-    return new Promise(resolve => {
-      window.gapi.load('auth2', () => {
-        window.gapi.auth2.init(config).then(() => {
-          resolve(window.gapi);
-        });
-      });
-    });
-  }
-
-  function Auth() {
-    if (!(this instanceof Auth)) return new Auth();
-    this.GoogleAuth = null;
-    /* window.gapi.auth2.getAuthInstance() */
-
-    this.isAuthorized = false;
-    this.isInit = false;
-    this.prompt = null;
-
-    this.isLoaded = function () {
-      /* eslint-disable */
-      console.warn('isLoaded() will be deprecated. You can use "this.$gAuth.isInit"');
-      return !!this.GoogleAuth;
-    };
-
-    this.load = (config, prompt) => {
-      installClient().then(() => {
-        return initClient(config);
-      }).then(gapi => {
-        this.GoogleAuth = gapi.auth2.getAuthInstance();
-        this.isInit = true;
-        this.prompt = prompt;
-        this.isAuthorized = this.GoogleAuth.isSignedIn.get();
-      });
-    };
-
-    this.signIn = (successCallback, errorCallback) => {
-      return new Promise((resolve, reject) => {
-        if (!this.GoogleAuth) {
-          if (typeof errorCallback === 'function') errorCallback(false);
-          reject(false);
-          return;
-        }
-
-        this.GoogleAuth.signIn().then(googleUser => {
-          if (typeof successCallback === 'function') successCallback(googleUser);
-          this.isAuthorized = this.GoogleAuth.isSignedIn.get();
-          resolve(googleUser);
-        }).catch(error => {
-          if (typeof errorCallback === 'function') errorCallback(error);
-          reject(error);
-        });
-      });
-    };
-
-    this.getAuthCode = (successCallback, errorCallback) => {
-      return new Promise((resolve, reject) => {
-        if (!this.GoogleAuth) {
-          if (typeof errorCallback === 'function') errorCallback(false);
-          reject(false);
-          return;
-        }
-
-        this.GoogleAuth.grantOfflineAccess({
-          prompt: this.prompt
-        }).then(function (resp) {
-          if (typeof successCallback === 'function') successCallback(resp.code);
-          resolve(resp.code);
-        }).catch(function (error) {
-          if (typeof errorCallback === 'function') errorCallback(error);
-          reject(error);
-        });
-      });
-    };
-
-    this.signOut = (successCallback, errorCallback) => {
-      return new Promise((resolve, reject) => {
-        if (!this.GoogleAuth) {
-          if (typeof errorCallback === 'function') errorCallback(false);
-          reject(false);
-          return;
-        }
-
-        this.GoogleAuth.signOut().then(() => {
-          if (typeof successCallback === 'function') successCallback();
-          this.isAuthorized = false;
-          resolve(true);
-        }).catch(error => {
-          if (typeof errorCallback === 'function') errorCallback(error);
-          reject(error);
-        });
-      });
-    };
-  }
-
-  return new Auth();
-}();
-
-function installGoogleAuthPlugin(Vue, options) {
-  /* eslint-disable */
-  //set config
-  let GoogleAuthConfig = null;
-  let GoogleAuthDefaultConfig = {
-    scope: 'profile email',
-    discoveryDocs: ['https://www.googleapis.com/discovery/v1/apis/drive/v3/rest']
-  };
-  let prompt = 'select_account';
-
-  if (typeof options === 'object') {
-    GoogleAuthConfig = Object.assign(GoogleAuthDefaultConfig, options);
-    if (options.scope) GoogleAuthConfig.scope = options.scope;
-    if (options.prompt) prompt = options.prompt;
-
-    if (!options.clientId) {
-      console.warn('clientId is required');
-    }
-  } else {
-    console.warn('invalid option type. Object type accepted only');
-  } //Install Vue plugin
-
-
-  Vue.gAuth = googleAuth;
-  Object.defineProperties(Vue.prototype, {
-    $gAuth: {
-      get: function () {
-        return Vue.gAuth;
-      }
-    }
-  });
-  Vue.gAuth.load(GoogleAuthConfig, prompt);
-}
-
-var _default = installGoogleAuthPlugin;
-exports.default = _default;
-},{}],"src/main.js":[function(require,module,exports) {
+},{"_css_loader":"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/css-loader.js"}],"src/main.js":[function(require,module,exports) {
 "use strict";
 
 var _vue = _interopRequireDefault(require("vue"));
@@ -56787,18 +56752,15 @@ require("bootstrap/dist/css/bootstrap.css");
 
 require("bootstrap-vue/dist/bootstrap-vue.css");
 
-var _vueGoogleOauth = _interopRequireDefault(require("vue-google-oauth2"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var gauthOption = {
-  clientId: '210400129285-0sdv4aoueo9ivf0381ckephgsiqqau43.apps.googleusercontent.com',
-  scope: 'profile email',
-  prompt: 'select_account'
-};
-
-_vue.default.use(_vueGoogleOauth.default, gauthOption);
-
+// import GAuth from 'vue-google-oauth2'
+// const gauthOption = {
+//   clientId: '210400129285-0sdv4aoueo9ivf0381ckephgsiqqau43.apps.googleusercontent.com',
+//   scope: 'profile email',
+//   prompt: 'select_account'
+// }
+// Vue.use(GAuth, gauthOption)
 _vue.default.use(_bootstrapVue.BootstrapVue);
 
 _vue.default.use(_bootstrapVue.IconsPlugin);
@@ -56808,7 +56770,7 @@ new _vue.default({
     return h(_app.default);
   }
 }).$mount('#app');
-},{"vue":"node_modules/vue/dist/vue.runtime.esm.js","./app.vue":"src/app.vue","bootstrap-vue":"node_modules/bootstrap-vue/esm/index.js","bootstrap/dist/css/bootstrap.css":"node_modules/bootstrap/dist/css/bootstrap.css","bootstrap-vue/dist/bootstrap-vue.css":"node_modules/bootstrap-vue/dist/bootstrap-vue.css","vue-google-oauth2":"node_modules/vue-google-oauth2/index.js"}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"vue":"node_modules/vue/dist/vue.runtime.esm.js","./app.vue":"src/app.vue","bootstrap-vue":"node_modules/bootstrap-vue/esm/index.js","bootstrap/dist/css/bootstrap.css":"node_modules/bootstrap/dist/css/bootstrap.css","bootstrap-vue/dist/bootstrap-vue.css":"node_modules/bootstrap-vue/dist/bootstrap-vue.css"}],"../../../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -56836,7 +56798,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56613" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55528" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
